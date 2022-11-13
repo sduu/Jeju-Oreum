@@ -158,3 +158,18 @@ button:disabled {
     height: 100%;
     width: 100%;
 }
+
+.iw-inner {
+    max-width: 200px;
+    padding: 4px;
+}
+
+.iw-inner .iw-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+.iw-inner .iw-desc {
+    margin-top: 4px;
+    font-size: 1.2rem;
+}
