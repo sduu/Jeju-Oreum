@@ -159,7 +159,7 @@ function handlerListItemClick(index) {
 function createPagination(pageGroup = 1) {
     const $fragment = document.createDocumentFragment();
     const start = pageGroup * pageCount - (pageCount - 1);
-    const end = pageGroup * pageCount > totalPage / dataPerPage ? totalPage / dataPerPage : pageGroup * pageCount;
+    const end = pageGroup * pageCount > Math.ceil(totalPage / dataPerPage) ? Math.ceil(totalPage / dataPerPage) : pageGroup * pageCount;
 
     for (let i = start; i <= end; i++) {
         const $button = document.createElement('button');
@@ -176,7 +176,7 @@ function createPagination(pageGroup = 1) {
     $numList.appendChild($fragment);
 
     start === 1 ? ($btnPrev.disabled = true) : ($btnPrev.disabled = false);
-    end >= totalPage / dataPerPage ? ($btnNext.disabled = true) : ($btnNext.disabled = false);
+    end >= Math.ceil(totalPage / dataPerPage) ? ($btnNext.disabled = true) : ($btnNext.disabled = false);
 }
 
 // 페이징 번호 클릭 핸들러
