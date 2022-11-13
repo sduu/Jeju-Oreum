@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>제주 오름 지도</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.5/dist/web/static/pretendard-dynamic-subset.css" />
+        <link rel="stylesheet" href="src/style/reset.css" />
+        <link rel="stylesheet" href="src/style/style.css" />
+        <script src="https://kit.fontawesome.com/77ad8525ff.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class="wrapper">
+            <article id="app">
+                <div class="side-cont">
+                    <h1 class="title">제주 오름 지도</h1>
+                    <ul class="restaurant-list">
+                        <li class="restaurant-item">
+                            <button type="button" class="is-active">
+                                <span>한식</span>
+                                <strong>당케올레국수</strong>
+                                <p>제주특별자치도 서귀포시 표선면 민속해안로 584</p>
+                            </button>
+                        </li>
+                        <li class="restaurant-item">
+                            <button type="button">
+                                <span>한식</span>
+                                <strong>표선면</strong>
+                                <p>제주특별자치도 서귀포시 표선면 서성일로 74</p>
+                            </button>
+                        </li>
+                        <li class="restaurant-item">
+                            <button type="button">
+                                <span>일식</span>
+                                <strong>강해일횟집</strong>
+                                <p>제주특별자치도 서귀포시 표선면 표선당포로14</p>
+                            </button>
+                        </li>
+                        <li class="restaurant-item">
+                            <button type="button">
+                                <span>서양식</span>
+                                <strong>샤오츠</strong>
+                                <p>제주특별자치도 서귀포시 표선면 민속해안로 584</p>
+                            </button>
+                        </li>
+                        <li class="restaurant-item">
+                            <button type="button">
+                                <span>중식</span>
+                                <strong>만사성</strong>
+                                <p>제주특별자치도 서귀포시 소암로 37</p>
+                            </button>
+                        </li>
+                        <li class="restaurant-item">
+                            <button type="button">
+                                <span>한식</span>
+                                <strong>당케올레국수</strong>
+                                <p>제주특별자치도 서귀포시 표선면 민속해안로 584</p>
+                            </button>
+                        </li>
+                        <li class="restaurant-item">
+                            <button type="button">
+                                <span>한식</span>
+                                <strong>표선면</strong>
+                                <p>제주특별자치도 서귀포시 표선면 서성일로 74</p>
+                            </button>
+                        </li>
+                        <li class="restaurant-item">
+                            <button type="button">
+                                <span>일식</span>
+                                <strong>강해일횟집</strong>
+                                <p>제주특별자치도 서귀포시 표선면 표선당포로14</p>
+                            </button>
+                        </li>
+                        <li class="restaurant-item">
+                            <button type="button">
+                                <span>서양식</span>
+                                <strong>샤오츠</strong>
+                                <p>제주특별자치도 서귀포시 표선면 민속해안로 584</p>
+                            </button>
+                        </li>
+                        <li class="restaurant-item">
+                            <button type="button">
+                                <span>중식</span>
+                                <strong>만사성</strong>
+                                <p>제주특별자치도 서귀포시 소암로 37</p>
+                            </button>
+                        </li>
+                    </ul>
+                    <div class="restaurant-pagination">
+                        <button class="btn-prev" type="button" aria-label="이전"><i class="fa-solid fa-chevron-left"></i></button>
+                        <ul class="num-list">
+                            <button class="is-active" type="button">1</button>
+                            <button type="button">2</button>
+                            <button type="button">3</button>
+                            <button type="button">4</button>
+                            <button type="button">5</button>
+                        </ul>
+                        <button class="btn-next" type="button" aria-label="다음"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <div class="map-cont" id="map"></div>
+            </article>
+        </div>
+    </body>
+</html>
