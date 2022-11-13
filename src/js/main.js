@@ -1,11 +1,15 @@
 const $oreumList = document.querySelector('.oreum-list');
+const $pagination = document.querySelector('.oreum-pagination');
+const $numList = $pagination.querySelector('.num-list');
+const $btnPrev = $pagination.querySelector('.btn-prev');
+const $btnNext = $pagination.querySelector('.btn-next');
 
 const dataPerPage = 10;
 const pageCount = 5;
 let currentPage = 1;
 let totalPage = 0;
 
-const oreumData = [];
+let oreumData = [];
 let markers = [];
 let infoWindows = [];
 
@@ -13,6 +17,14 @@ let infoWindows = [];
 const googleMap = initMap();
 await requestData();
 createListItem();
+createPagination();
+bindEvent();
+
+// 이벤트 바인딩
+function bindEvent() {
+    $btnPrev.addEventListener('click', handlerPageBtnClick);
+    $btnNext.addEventListener('click', handlerPageBtnClick);
+}
 
 // 구글맵 생성
 function initMap() {
@@ -141,4 +153,61 @@ function handlerListItemClick(index) {
 
     hideMarkers();
     showMarkers(googleMap, index);
+}
+
+// 페이징 요소 생성
+function createPagination(pageGroup = 1) {
+    const $fragment = document.createDocumentFragment();
+    const start = pageGroup * pageCount - (pageCount - 1);
+    const end = pageGroup * pageCount > totalPage / dataPerPage ? totalPage / dataPerPage : pageGroup * pageCount;
+
+    for (let i = start; i <= end; i++) {
+        const $button = document.createElement('button');
+        $button.type = 'button';
+        $button.textContent = i;
+
+        if (i === currentPage) $button.classList.add('is-active');
+
+        $button.addEventListener('click', () => handlerPageNumClick(i));
+
+        $fragment.appendChild($button);
+    }
+
+    $numList.appendChild($fragment);
+
+    start === 1 ? ($btnPrev.disabled = true) : ($btnPrev.disabled = false);
+    end >= totalPage / dataPerPage ? ($btnNext.disabled = true) : ($btnNext.disabled = false);
+}
+
+// 페이징 번호 클릭 핸들러
+async function handlerPageNumClick(index) {
+    const $btns = $pagination.querySelectorAll('.num-list button');
+    [...$btns].forEach(btn => btn.classList.remove('is-active'));
+    event.currentTarget.classList.add('is-active');
+
+    currentPage = index;
+    oreumData = [];
+    deleteMarker();
+    await requestData(currentPage);
+
+    $oreumList.replaceChildren();
+    createListItem();
+}
+
+// 페이징 버튼 클릭 핸들러
+async function handlerPageBtnClick() {
+    const pageGroup = event.currentTarget.classList.contains('btn-prev') ? Math.ceil(currentPage / pageCount) - 1 : Math.ceil(currentPage / pageCount) + 1;
+
+    console.log(pageGroup);
+
+    currentPage = pageGroup * pageCount - (pageCount - 1);
+    oreumData = [];
+    deleteMarker();
+    await requestData(currentPage);
+
+    $numList.replaceChildren();
+    createPagination(pageGroup);
+
+    $oreumList.replaceChildren();
+    createListItem();
 }
