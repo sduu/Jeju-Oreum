@@ -82,15 +82,15 @@ button:disabled {
     background: transparent;
 }
 
-.side-cont .restaurant-list {
+.side-cont .oreum-list {
     margin-top: 16px;
 }
 
-.side-cont .restaurant-list li + li {
+.side-cont .oreum-list li + li {
     margin-top: 8px;
 }
 
-.side-cont .restaurant-list button {
+.side-cont .oreum-list button {
     display: grid;
     grid-template-columns: 44px 1fr;
     width: 100%;
@@ -98,43 +98,43 @@ button:disabled {
     text-align: left;
 }
 
-.side-cont .restaurant-list button:hover {
+.side-cont .oreum-list button:hover {
     background-color: var(--secondary);
 }
 
-.side-cont .restaurant-list button.is-active {
+.side-cont .oreum-list button.is-active {
     background-color: var(--secondary);
 }
 
-.side-cont .restaurant-item span {
+.side-cont .oreum-item span {
     grid-row: 1 / 3;
     line-height: 1.8rem;
     font-size: 1rem;
     font-weight: 700;
 }
 
-.side-cont .restaurant-item strong {
+.side-cont .oreum-item strong {
     font-size: 1.8rem;
 }
 
-.side-cont .restaurant-item p {
+.side-cont .oreum-item p {
     margin-top: 8px;
     font-size: 1.2rem;
     word-break: keep-all;
 }
 
-.side-cont .restaurant-pagination {
+.side-cont .oreum-pagination {
     display: flex;
     justify-content: center;
     gap: 4px;
     margin-top: 16px;
 }
 
-.side-cont .restaurant-pagination .num-list {
+.side-cont .oreum-pagination .num-list {
     display: flex;
 }
 
-.side-cont .restaurant-pagination .num-list button {
+.side-cont .oreum-pagination .num-list button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -145,11 +145,11 @@ button:disabled {
     transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
-.side-cont .restaurant-pagination .num-list button:hover {
+.side-cont .oreum-pagination .num-list button:hover {
     font-weight: 700;
 }
 
-.side-cont .restaurant-pagination .num-list button.is-active {
+.side-cont .oreum-pagination .num-list button.is-active {
     color: var(--white);
     background-color: var(--dark);
 }

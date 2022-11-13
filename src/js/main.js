@@ -1,19 +1,18 @@
+const $oreumList = document.querySelector('.oreum-list');
+
 const dataPerPage = 10;
 const pageCount = 5;
 let currentPage = 1;
 let totalPage = 0;
 
-const restaurantData = [];
+const oreumData = [];
 let markers = [];
 let infoWindows = [];
 
-const googleMap = initMap();
-init();
-
 // 초기화
-function init() {
-    requestData();
-}
+const googleMap = initMap();
+await requestData();
+createListItem();
 
 // 구글맵 생성
 function initMap() {
@@ -37,13 +36,11 @@ async function requestData(page = 1) {
     totalPage = json.totalCount;
 
     for (const data of json.data) {
-        restaurantData.push(data);
+        oreumData.push(data);
         addMarker(googleMap, data);
     }
 
     showMarkers(googleMap);
-
-    console.log(restaurantData);
 }
 
 // 마커 생성
@@ -77,20 +74,71 @@ function addMarker(map, {오름명, 설명, 위도, 경도}) {
     infoWindows.push(infoWindow);
 }
 
-// 마커를 지도에 표시
+// 마커 지도에 표시
 function showMarkers(map, index) {
-    const bounds = new google.maps.LatLngBounds();
-
     if (index !== undefined) {
+        // 한 개의 마커 표시
         markers[index].setMap(map);
-        bounds.extend(markers[index].position);
+        map.panTo(markers[index].position);
+        map.setZoom(15);
     } else {
+        // 여러개 마커 표시
+        const bounds = new google.maps.LatLngBounds();
         markers.slice(index).forEach(marker => {
             marker.setMap(map);
             bounds.extend(marker.position);
         });
+        map.panToBounds(bounds);
+        map.fitBounds(bounds);
     }
+}
 
-    map.fitBounds(bounds);
-    map.panToBounds(bounds);
+// 마커 지도에서 숨기기
+function hideMarkers() {
+    markers.forEach(marker => {
+        marker.setMap(null);
+    });
+}
+
+// 마커 삭제
+function deleteMarker() {
+    hideMarkers();
+    markers = [];
+    infoWindows = [];
+}
+
+// 리스트 아이템 요소 생성
+function createListItem() {
+    const $fragment = document.createDocumentFragment();
+
+    oreumData.forEach(({위치, 오름명}, i) => {
+        const $item = document.createElement('li');
+        const $button = document.createElement('button');
+        const innerContent = `
+            <span>${위치.split(' ')[0]}</span>
+            <strong>${오름명}</strong>
+            <p>${위치}</p>
+        `;
+
+        $item.classList.add('oreum-item');
+        $button.type = 'button';
+        $button.innerHTML = innerContent;
+
+        $item.appendChild($button);
+        $fragment.appendChild($item);
+
+        $button.addEventListener('click', () => handlerListItemClick(i));
+    });
+
+    $oreumList.appendChild($fragment);
+}
+
+// 리스트 아이템 요소 클릭 핸들러
+function handlerListItemClick(index) {
+    const $btns = $oreumList.querySelectorAll('.oreum-item button');
+    [...$btns].forEach(btn => btn.classList.remove('is-active'));
+    event.currentTarget.classList.add('is-active');
+
+    hideMarkers();
+    showMarkers(googleMap, index);
 }
