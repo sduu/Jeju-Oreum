@@ -162,6 +162,7 @@ button:disabled {
 .iw-inner {
     max-width: 200px;
     padding: 4px;
+    font-family: 'Pretendard', sans-serif;
 }
 
 .iw-inner .iw-title {
